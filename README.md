@@ -57,8 +57,29 @@ cd books-scraper
 python -m venv venv
 venv\Scripts\activate
 pip install -r requirements.txt
+```
+
+## Setup & Installation
+
+This project uses PostgreSQL running in a Docker container.
+
+```bash
+docker run --name books-postgres \
+  -e POSTGRES_PASSWORD=postgres123 \
   -e POSTGRES_DB=booksdb \
   -p 5432:5432 \
   -v books_pgdata:/var/lib/postgresql/data \
   -d postgres:16
+```
+
+## Run the API
+
+```bash
+uvicorn app.main:app --reload
+```
+
+## API Documentation
+
+### FastAPI auto-generated documentation:
+http://127.0.0.1:8000/docs
 
