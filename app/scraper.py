@@ -13,9 +13,6 @@ def rating_to_int(rating_word: str) -> int:
 
 
 def scrape_books(max_pages: int = 1) -> List[Dict]:
-    """
-    Scrape βιβλία από το Books to Scrape για max_pages σελίδες (1 = μόνο η πρώτη).
-    """
     books: List[Dict] = []
 
     with sync_playwright() as p:
@@ -61,7 +58,6 @@ def scrape_books(max_pages: int = 1) -> List[Dict]:
                 except Exception as e:
                     print(f"⚠️ Skipped book at index {i} on page {pages_scraped}: {e}")
 
-            # Βρες το "Next" (αν δεν υπάρχει, τέλος)
             next_link = page.locator("li.next a")
             if next_link.count() == 0:
                 break

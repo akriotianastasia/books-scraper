@@ -38,7 +38,7 @@ def scrape(pages: int = 1, db: Session = Depends(get_db)):
 
 @app.get("/books")
 def get_books(page: int = 1, limit: int = 20, db: Session = Depends(get_db)):
-    limit = max(1, min(limit, 200))      # cap για API
+    limit = max(1, min(limit, 200))
     page = max(1, page)
 
     items = crud.list_books_page(db, page=page, limit=limit)
